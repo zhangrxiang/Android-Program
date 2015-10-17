@@ -1,0 +1,4 @@
+http://ksoap.objectweb.org/software/documentation/api/org/ksoap/package-summary.html
+
+
+http://amigo.gforge.inria.fr/obr/v2/amigo_ksoap_binding/doc/api/org/ksoap2/serialization/SoapSerializationEnvelope.html
