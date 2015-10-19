@@ -13,8 +13,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.zrx.first.domain.Student;
 import com.zrx.first.service.LoginService;
+import com.zrx.first.service.StudentService;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
@@ -26,9 +29,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText password;
     private Button login;
     private Button reset;
+    private Button register;
     private CheckBox rememberPassword;
     private Map<String, String> map;
-    boolean flag;
+    private boolean flag;
+    private StudentService studentService = new StudentService(this);
 
 
     @Override
@@ -46,9 +51,11 @@ public class MainActivity extends AppCompatActivity {
                 password.setText(null);
             }
         });
+        register = (Button) findViewById(R.id.register);
         rememberPassword = (CheckBox) findViewById(R.id.rememberPassword);
         //getBack(LoginService.getUserInfo(this));
-        getBack(LoginService.getUserInfoBySharedPreferences(this));//表单回显
+        //  getBack(LoginService.getUserInfoBySharedPreferences(this));//表单回显
+        // getBack(studentService.login(new Student()));
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,12 +64,20 @@ public class MainActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(name) || TextUtils.isEmpty(pwd)) {
                     Toast.makeText(MainActivity.this, "用户名或密码为空，登陆失败", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (!LoginService.verify(MainActivity.this, pwd)) {
+//                    if (!LoginService.verify(MainActivity.this, pwd)) {
+//                        Toast.makeText(MainActivity.this, "密码错误，登陆失败", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+                    Student student = studentService.login(new Student(name, pwd));
+                    if (student == null) {
                         Toast.makeText(MainActivity.this, "密码错误，登陆失败", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     Toast.makeText(MainActivity.this, "登陆", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(MainActivity.this,LoginActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("student", student);
+                    i.putExtras(bundle);
                     MainActivity.this.startActivity(i);
                     if (rememberPassword.isChecked()) {
                         Log.i(I, name);
@@ -80,6 +95,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void register(View view) {
+        Intent i = new Intent(this, RegisterActivity.class);
+        startActivity(i);
+    }
+
+    private void getBack(Student student) {
+        username.setText(student.getPassword());
+    }
     private void getBack(Map<String,String> userInfo) {
         if (userInfo != null) {
             Set<String> strings = userInfo.keySet();

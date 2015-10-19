@@ -7,66 +7,46 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.zrx.first.LoginActivity">
+    tools:context="com.zrx.first.StudentInfoActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sd_total_size"
-        android:textSize="20dp" />
+        android:text="@string/username"
+        android:textSize="18dp" />
 
     <EditText
-        android:id="@+id/sd_total_et"
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sd_available_size"
-        android:textSize="20dp" />
+        android:text="@string/password"
+        android:textSize="18dp" />
 
     <EditText
-        android:id="@+id/sd_available_et"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/in_total_size"
-        android:textSize="20dp" />
+        android:text="@string/number"
+        android:textSize="18dp" />
 
     <EditText
-        android:id="@+id/in_total_et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/in_available_size"
-        android:textSize="20dp" />
-
-    <EditText
-        android:id="@+id/in_available_et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/saveInfo"
+        android:id="@+id/number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:onClick="myselfInfo"
-        android:text="@string/myself" />
-    <!--<TextView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/show"/>-->
+        android:inputType="number" />
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lv_myself_info"></ListView>
+        android:id="@+id/lv_info">
 
+    </ListView>
 </LinearLayout>
